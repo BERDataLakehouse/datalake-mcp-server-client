@@ -1,4 +1,4 @@
-"""A client library for accessing CDM MCP Server"""
+"""A client library for accessing BERDL Datalake MCP Server"""
 
 from .client import AuthenticatedClient, Client
 

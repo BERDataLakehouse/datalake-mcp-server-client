@@ -73,7 +73,7 @@ def sync_detailed(
     """List all databases in the Hive metastore
 
      Lists all databases available in the Hive metastore, optionally using PostgreSQL for faster
-    retrieval.
+    retrieval and filtered by user namespace.
 
     Args:
         body (DatabaseListRequest): Request model for listing databases.
@@ -105,7 +105,7 @@ def sync(
     """List all databases in the Hive metastore
 
      Lists all databases available in the Hive metastore, optionally using PostgreSQL for faster
-    retrieval.
+    retrieval and filtered by user namespace.
 
     Args:
         body (DatabaseListRequest): Request model for listing databases.
@@ -132,7 +132,7 @@ async def asyncio_detailed(
     """List all databases in the Hive metastore
 
      Lists all databases available in the Hive metastore, optionally using PostgreSQL for faster
-    retrieval.
+    retrieval and filtered by user namespace.
 
     Args:
         body (DatabaseListRequest): Request model for listing databases.
@@ -162,7 +162,7 @@ async def asyncio(
     """List all databases in the Hive metastore
 
      Lists all databases available in the Hive metastore, optionally using PostgreSQL for faster
-    retrieval.
+    retrieval and filtered by user namespace.
 
     Args:
         body (DatabaseListRequest): Request model for listing databases.

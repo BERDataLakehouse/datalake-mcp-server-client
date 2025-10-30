@@ -16,30 +16,39 @@ class DatabaseListRequest:
     """Request model for listing databases.
 
     Attributes:
-        use_postgres (bool | Unset): Whether to use PostgreSQL for faster metadata retrieval Default: True.
+        use_hms (bool | Unset): Whether to use Hive Metastore client for faster metadata retrieval Default: True.
+        filter_by_namespace (bool | Unset): Whether to filter databases by user/tenant namespace prefixes Default: True.
     """
 
-    use_postgres: bool | Unset = True
+    use_hms: bool | Unset = True
+    filter_by_namespace: bool | Unset = True
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        use_postgres = self.use_postgres
+        use_hms = self.use_hms
+
+        filter_by_namespace = self.filter_by_namespace
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
-        if use_postgres is not UNSET:
-            field_dict["use_postgres"] = use_postgres
+        if use_hms is not UNSET:
+            field_dict["use_hms"] = use_hms
+        if filter_by_namespace is not UNSET:
+            field_dict["filter_by_namespace"] = filter_by_namespace
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        use_postgres = d.pop("use_postgres", UNSET)
+        use_hms = d.pop("use_hms", UNSET)
+
+        filter_by_namespace = d.pop("filter_by_namespace", UNSET)
 
         database_list_request = cls(
-            use_postgres=use_postgres,
+            use_hms=use_hms,
+            filter_by_namespace=filter_by_namespace,
         )
 
         database_list_request.additional_properties = d

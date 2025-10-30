@@ -17,17 +17,17 @@ class TableListRequest:
 
     Attributes:
         database (str): Name of the database to list tables from
-        use_postgres (bool | Unset): Whether to use PostgreSQL for faster metadata retrieval Default: True.
+        use_hms (bool | Unset): Whether to use Hive Metastore client for faster metadata retrieval Default: True.
     """
 
     database: str
-    use_postgres: bool | Unset = True
+    use_hms: bool | Unset = True
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         database = self.database
 
-        use_postgres = self.use_postgres
+        use_hms = self.use_hms
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -36,8 +36,8 @@ class TableListRequest:
                 "database": database,
             }
         )
-        if use_postgres is not UNSET:
-            field_dict["use_postgres"] = use_postgres
+        if use_hms is not UNSET:
+            field_dict["use_hms"] = use_hms
 
         return field_dict
 
@@ -46,11 +46,11 @@ class TableListRequest:
         d = dict(src_dict)
         database = d.pop("database")
 
-        use_postgres = d.pop("use_postgres", UNSET)
+        use_hms = d.pop("use_hms", UNSET)
 
         table_list_request = cls(
             database=database,
-            use_postgres=use_postgres,
+            use_hms=use_hms,
         )
 
         table_list_request.additional_properties = d

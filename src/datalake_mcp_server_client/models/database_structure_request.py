@@ -17,25 +17,25 @@ class DatabaseStructureRequest:
 
     Attributes:
         with_schema (bool | Unset): Whether to include table schemas in the response Default: False.
-        use_postgres (bool | Unset): Whether to use PostgreSQL for faster metadata retrieval Default: True.
+        use_hms (bool | Unset): Whether to use Hive Metastore client for faster metadata retrieval Default: True.
     """
 
     with_schema: bool | Unset = False
-    use_postgres: bool | Unset = True
+    use_hms: bool | Unset = True
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         with_schema = self.with_schema
 
-        use_postgres = self.use_postgres
+        use_hms = self.use_hms
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if with_schema is not UNSET:
             field_dict["with_schema"] = with_schema
-        if use_postgres is not UNSET:
-            field_dict["use_postgres"] = use_postgres
+        if use_hms is not UNSET:
+            field_dict["use_hms"] = use_hms
 
         return field_dict
 
@@ -44,11 +44,11 @@ class DatabaseStructureRequest:
         d = dict(src_dict)
         with_schema = d.pop("with_schema", UNSET)
 
-        use_postgres = d.pop("use_postgres", UNSET)
+        use_hms = d.pop("use_hms", UNSET)
 
         database_structure_request = cls(
             with_schema=with_schema,
-            use_postgres=use_postgres,
+            use_hms=use_hms,
         )
 
         database_structure_request.additional_properties = d
