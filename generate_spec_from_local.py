@@ -30,6 +30,7 @@ def main(repo_path_str: str, output_file_str: str):
         # Set SERVICE_ROOT_PATH to empty string to disable root_app mounting
         # This ensures we get the main app with all routes for OpenAPI spec generation
         import os
+
         os.environ["SERVICE_ROOT_PATH"] = ""
 
         print("🔍 Importing FastAPI app factory 'create_application'...")
@@ -62,21 +63,10 @@ def main(repo_path_str: str, output_file_str: str):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description="Generate OpenAPI spec from a local FastAPI repository."
-    )
+    parser = argparse.ArgumentParser(description="Generate OpenAPI spec from a local FastAPI repository.")
     # Argument 1: The path to the repo to analyze
-    parser.add_argument(
-        "repo_path",
-        type=str,
-        help="The path to the local repository clone."
-    )
+    parser.add_argument("repo_path", type=str, help="The path to the local repository clone.")
     # Argument 2: The path where the final JSON file should be saved
-    parser.add_argument(
-        "--output",
-        required=True,
-        type=str,
-        help="Path to save the generated openapi.json file."
-    )
+    parser.add_argument("--output", required=True, type=str, help="Path to save the generated openapi.json file.")
     args = parser.parse_args()
     main(args.repo_path, args.output)

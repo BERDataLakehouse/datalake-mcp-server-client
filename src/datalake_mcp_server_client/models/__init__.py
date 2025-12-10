@@ -3,15 +3,18 @@
 from .aggregation_spec import AggregationSpec
 from .aggregation_spec_function import AggregationSpecFunction
 from .column_spec import ColumnSpec
+from .component_health import ComponentHealth
+from .component_health_status import ComponentHealthStatus
 from .database_list_request import DatabaseListRequest
 from .database_list_response import DatabaseListResponse
 from .database_structure_request import DatabaseStructureRequest
 from .database_structure_response import DatabaseStructureResponse
 from .database_structure_response_structure import DatabaseStructureResponseStructure
+from .deep_health_response import DeepHealthResponse
+from .deep_health_response_status import DeepHealthResponseStatus
 from .error_response import ErrorResponse
 from .filter_condition import FilterCondition
 from .filter_condition_operator import FilterConditionOperator
-from .health_response import HealthResponse
 from .join_clause import JoinClause
 from .join_clause_join_type import JoinClauseJoinType
 from .order_by_spec import OrderBySpec
@@ -35,15 +38,18 @@ __all__ = (
     "AggregationSpec",
     "AggregationSpecFunction",
     "ColumnSpec",
+    "ComponentHealth",
+    "ComponentHealthStatus",
     "DatabaseListRequest",
     "DatabaseListResponse",
     "DatabaseStructureRequest",
     "DatabaseStructureResponse",
     "DatabaseStructureResponseStructure",
+    "DeepHealthResponse",
+    "DeepHealthResponseStatus",
     "ErrorResponse",
     "FilterCondition",
     "FilterConditionOperator",
-    "HealthResponse",
     "JoinClause",
     "JoinClauseJoinType",
     "OrderBySpec",
