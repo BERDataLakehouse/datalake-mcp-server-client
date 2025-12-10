@@ -5,8 +5,8 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.deep_health_response import DeepHealthResponse
 from ...models.error_response import ErrorResponse
-from ...models.health_response import HealthResponse
 from ...types import Response
 
 
@@ -21,9 +21,9 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> ErrorResponse | HealthResponse | None:
+) -> DeepHealthResponse | ErrorResponse | None:
     if response.status_code == 200:
-        response_200 = HealthResponse.from_dict(response.json())
+        response_200 = DeepHealthResponse.from_dict(response.json())
 
         return response_200
 
@@ -45,7 +45,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[ErrorResponse | HealthResponse]:
+) -> Response[DeepHealthResponse | ErrorResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -57,17 +57,18 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[ErrorResponse | HealthResponse]:
+) -> Response[DeepHealthResponse | ErrorResponse]:
     """Health check
 
-     Returns the health status of the API.
+     Returns detailed health status of all backend services including Redis, PostgreSQL (if configured),
+    and Hive Metastore Thrift connection.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ErrorResponse | HealthResponse]
+        Response[DeepHealthResponse | ErrorResponse]
     """
 
     kwargs = _get_kwargs()
@@ -82,17 +83,18 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-) -> ErrorResponse | HealthResponse | None:
+) -> DeepHealthResponse | ErrorResponse | None:
     """Health check
 
-     Returns the health status of the API.
+     Returns detailed health status of all backend services including Redis, PostgreSQL (if configured),
+    and Hive Metastore Thrift connection.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ErrorResponse | HealthResponse
+        DeepHealthResponse | ErrorResponse
     """
 
     return sync_detailed(
@@ -103,17 +105,18 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-) -> Response[ErrorResponse | HealthResponse]:
+) -> Response[DeepHealthResponse | ErrorResponse]:
     """Health check
 
-     Returns the health status of the API.
+     Returns detailed health status of all backend services including Redis, PostgreSQL (if configured),
+    and Hive Metastore Thrift connection.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ErrorResponse | HealthResponse]
+        Response[DeepHealthResponse | ErrorResponse]
     """
 
     kwargs = _get_kwargs()
@@ -126,17 +129,18 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-) -> ErrorResponse | HealthResponse | None:
+) -> DeepHealthResponse | ErrorResponse | None:
     """Health check
 
-     Returns the health status of the API.
+     Returns detailed health status of all backend services including Redis, PostgreSQL (if configured),
+    and Hive Metastore Thrift connection.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ErrorResponse | HealthResponse
+        DeepHealthResponse | ErrorResponse
     """
 
     return (
