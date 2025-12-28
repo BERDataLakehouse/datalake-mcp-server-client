@@ -70,12 +70,20 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: TableQueryRequest,
 ) -> Response[ErrorResponse | TableQueryResponse]:
-    """Query a Delta table
+    """Query Delta tables with pagination
 
-     Executes a SQL query against a specified Delta table.
+     Executes a SQL query against Delta tables with pagination support. Returns query results along with
+    pagination metadata including total count. Use limit and offset parameters to paginate through large
+    result sets. IMPORTANT: Include an ORDER BY clause in your query for deterministic pagination
+    results. Without ORDER BY, rows may appear in different order across pages, causing duplicates or
+    missing records.
 
     Args:
         body (TableQueryRequest): Request model for querying a Delta table.
+
+            Note: For deterministic pagination with offset > 0, include an ORDER BY
+            clause in your query. Without ORDER BY, rows may appear in different
+            order across pages, causing duplicates or missing records.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -101,12 +109,20 @@ def sync(
     client: AuthenticatedClient,
     body: TableQueryRequest,
 ) -> ErrorResponse | TableQueryResponse | None:
-    """Query a Delta table
+    """Query Delta tables with pagination
 
-     Executes a SQL query against a specified Delta table.
+     Executes a SQL query against Delta tables with pagination support. Returns query results along with
+    pagination metadata including total count. Use limit and offset parameters to paginate through large
+    result sets. IMPORTANT: Include an ORDER BY clause in your query for deterministic pagination
+    results. Without ORDER BY, rows may appear in different order across pages, causing duplicates or
+    missing records.
 
     Args:
         body (TableQueryRequest): Request model for querying a Delta table.
+
+            Note: For deterministic pagination with offset > 0, include an ORDER BY
+            clause in your query. Without ORDER BY, rows may appear in different
+            order across pages, causing duplicates or missing records.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -127,12 +143,20 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: TableQueryRequest,
 ) -> Response[ErrorResponse | TableQueryResponse]:
-    """Query a Delta table
+    """Query Delta tables with pagination
 
-     Executes a SQL query against a specified Delta table.
+     Executes a SQL query against Delta tables with pagination support. Returns query results along with
+    pagination metadata including total count. Use limit and offset parameters to paginate through large
+    result sets. IMPORTANT: Include an ORDER BY clause in your query for deterministic pagination
+    results. Without ORDER BY, rows may appear in different order across pages, causing duplicates or
+    missing records.
 
     Args:
         body (TableQueryRequest): Request model for querying a Delta table.
+
+            Note: For deterministic pagination with offset > 0, include an ORDER BY
+            clause in your query. Without ORDER BY, rows may appear in different
+            order across pages, causing duplicates or missing records.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -156,12 +180,20 @@ async def asyncio(
     client: AuthenticatedClient,
     body: TableQueryRequest,
 ) -> ErrorResponse | TableQueryResponse | None:
-    """Query a Delta table
+    """Query Delta tables with pagination
 
-     Executes a SQL query against a specified Delta table.
+     Executes a SQL query against Delta tables with pagination support. Returns query results along with
+    pagination metadata including total count. Use limit and offset parameters to paginate through large
+    result sets. IMPORTANT: Include an ORDER BY clause in your query for deterministic pagination
+    results. Without ORDER BY, rows may appear in different order across pages, causing duplicates or
+    missing records.
 
     Args:
         body (TableQueryRequest): Request model for querying a Delta table.
+
+            Note: For deterministic pagination with offset > 0, include an ORDER BY
+            clause in your query. Without ORDER BY, rows may appear in different
+            order across pages, causing duplicates or missing records.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

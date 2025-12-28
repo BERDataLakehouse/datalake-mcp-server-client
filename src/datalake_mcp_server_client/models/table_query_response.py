@@ -1,10 +1,14 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+if TYPE_CHECKING:
+    from ..models.pagination_info import PaginationInfo
+
 
 T = TypeVar("T", bound="TableQueryResponse")
 
@@ -15,19 +19,24 @@ class TableQueryResponse:
 
     Attributes:
         result (list[Any]): List of rows returned by the query, each as a dictionary
+        pagination (PaginationInfo): Pagination metadata for query results.
     """
 
     result: list[Any]
+    pagination: PaginationInfo
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         result = self.result
+
+        pagination = self.pagination.to_dict()
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
                 "result": result,
+                "pagination": pagination,
             }
         )
 
@@ -35,11 +44,16 @@ class TableQueryResponse:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.pagination_info import PaginationInfo
+
         d = dict(src_dict)
         result = cast(list[Any], d.pop("result"))
 
+        pagination = PaginationInfo.from_dict(d.pop("pagination"))
+
         table_query_response = cls(
             result=result,
+            pagination=pagination,
         )
 
         table_query_response.additional_properties = d
