@@ -5,7 +5,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.deep_health_response import DeepHealthResponse
+from ...models.async_query_status_response import AsyncQueryStatusResponse
 from ...models.error_response import ErrorResponse
 from ...types import Response
 
@@ -14,7 +14,7 @@ def _get_kwargs() -> dict[str, Any]:
 
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": "/health",
+        "url": "/delta/tables/query/async/jobs",
     }
 
     return _kwargs
@@ -22,9 +22,16 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> DeepHealthResponse | ErrorResponse | None:
+) -> ErrorResponse | list[AsyncQueryStatusResponse] | None:
     if response.status_code == 200:
-        response_200 = DeepHealthResponse.from_dict(response.json())
+        response_200 = []
+        _response_200 = response.json()
+        for response_200_item_data in _response_200:
+            response_200_item = AsyncQueryStatusResponse.from_dict(
+                response_200_item_data
+            )
+
+            response_200.append(response_200_item)
 
         return response_200
 
@@ -46,7 +53,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[DeepHealthResponse | ErrorResponse]:
+) -> Response[ErrorResponse | list[AsyncQueryStatusResponse]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -57,19 +64,18 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: AuthenticatedClient | Client,
-) -> Response[DeepHealthResponse | ErrorResponse]:
-    """Health check
+    client: AuthenticatedClient,
+) -> Response[ErrorResponse | list[AsyncQueryStatusResponse]]:
+    """List user's async query jobs
 
-     Returns detailed health status of all backend services including Redis, PostgreSQL (if configured),
-    and Hive Metastore Thrift connection.
+     Lists all async query jobs for the authenticated user.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[DeepHealthResponse | ErrorResponse]
+        Response[ErrorResponse | list[AsyncQueryStatusResponse]]
     """
 
     kwargs = _get_kwargs()
@@ -83,19 +89,18 @@ def sync_detailed(
 
 def sync(
     *,
-    client: AuthenticatedClient | Client,
-) -> DeepHealthResponse | ErrorResponse | None:
-    """Health check
+    client: AuthenticatedClient,
+) -> ErrorResponse | list[AsyncQueryStatusResponse] | None:
+    """List user's async query jobs
 
-     Returns detailed health status of all backend services including Redis, PostgreSQL (if configured),
-    and Hive Metastore Thrift connection.
+     Lists all async query jobs for the authenticated user.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        DeepHealthResponse | ErrorResponse
+        ErrorResponse | list[AsyncQueryStatusResponse]
     """
 
     return sync_detailed(
@@ -105,19 +110,18 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: AuthenticatedClient | Client,
-) -> Response[DeepHealthResponse | ErrorResponse]:
-    """Health check
+    client: AuthenticatedClient,
+) -> Response[ErrorResponse | list[AsyncQueryStatusResponse]]:
+    """List user's async query jobs
 
-     Returns detailed health status of all backend services including Redis, PostgreSQL (if configured),
-    and Hive Metastore Thrift connection.
+     Lists all async query jobs for the authenticated user.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[DeepHealthResponse | ErrorResponse]
+        Response[ErrorResponse | list[AsyncQueryStatusResponse]]
     """
 
     kwargs = _get_kwargs()
@@ -129,19 +133,18 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: AuthenticatedClient | Client,
-) -> DeepHealthResponse | ErrorResponse | None:
-    """Health check
+    client: AuthenticatedClient,
+) -> ErrorResponse | list[AsyncQueryStatusResponse] | None:
+    """List user's async query jobs
 
-     Returns detailed health status of all backend services including Redis, PostgreSQL (if configured),
-    and Hive Metastore Thrift connection.
+     Lists all async query jobs for the authenticated user.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        DeepHealthResponse | ErrorResponse
+        ErrorResponse | list[AsyncQueryStatusResponse]
     """
 
     return (

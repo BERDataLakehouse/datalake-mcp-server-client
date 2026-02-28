@@ -6,29 +6,44 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-T = TypeVar("T", bound="TableSelectResponseDataItem")
+T = TypeVar("T", bound="AsyncQuerySubmitResponse")
 
 
 @_attrs_define
-class TableSelectResponseDataItem:
-    """ """
+class AsyncQuerySubmitResponse:
+    """Response model for async query submission.
 
+    Attributes:
+        job_id (str): Unique identifier for the submitted job
+    """
+
+    job_id: str
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        job_id = self.job_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
+        field_dict.update(
+            {
+                "job_id": job_id,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        table_select_response_data_item = cls()
+        job_id = d.pop("job_id")
 
-        table_select_response_data_item.additional_properties = d
-        return table_select_response_data_item
+        async_query_submit_response = cls(
+            job_id=job_id,
+        )
+
+        async_query_submit_response.additional_properties = d
+        return async_query_submit_response
 
     @property
     def additional_keys(self) -> list[str]:

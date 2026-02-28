@@ -70,13 +70,16 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: TableQueryRequest,
 ) -> Response[ErrorResponse | TableQueryResponse]:
-    """Query Delta tables with pagination
+    """[DEPRECATED] Query Delta tables with pagination
 
      Executes a SQL query against Delta tables with pagination support. Returns query results along with
     pagination metadata including total count. Use limit and offset parameters to paginate through large
     result sets. IMPORTANT: Include an ORDER BY clause in your query for deterministic pagination
     results. Without ORDER BY, rows may appear in different order across pages, causing duplicates or
     missing records.
+
+    DEPRECATED: This endpoint is deprecated. Use endpoint /delta/tables/query/async/submit for
+    asynchronous query execution.
 
     Args:
         body (TableQueryRequest): Request model for querying a Delta table.
@@ -109,13 +112,16 @@ def sync(
     client: AuthenticatedClient,
     body: TableQueryRequest,
 ) -> ErrorResponse | TableQueryResponse | None:
-    """Query Delta tables with pagination
+    """[DEPRECATED] Query Delta tables with pagination
 
      Executes a SQL query against Delta tables with pagination support. Returns query results along with
     pagination metadata including total count. Use limit and offset parameters to paginate through large
     result sets. IMPORTANT: Include an ORDER BY clause in your query for deterministic pagination
     results. Without ORDER BY, rows may appear in different order across pages, causing duplicates or
     missing records.
+
+    DEPRECATED: This endpoint is deprecated. Use endpoint /delta/tables/query/async/submit for
+    asynchronous query execution.
 
     Args:
         body (TableQueryRequest): Request model for querying a Delta table.
@@ -143,13 +149,16 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: TableQueryRequest,
 ) -> Response[ErrorResponse | TableQueryResponse]:
-    """Query Delta tables with pagination
+    """[DEPRECATED] Query Delta tables with pagination
 
      Executes a SQL query against Delta tables with pagination support. Returns query results along with
     pagination metadata including total count. Use limit and offset parameters to paginate through large
     result sets. IMPORTANT: Include an ORDER BY clause in your query for deterministic pagination
     results. Without ORDER BY, rows may appear in different order across pages, causing duplicates or
     missing records.
+
+    DEPRECATED: This endpoint is deprecated. Use endpoint /delta/tables/query/async/submit for
+    asynchronous query execution.
 
     Args:
         body (TableQueryRequest): Request model for querying a Delta table.
@@ -180,13 +189,16 @@ async def asyncio(
     client: AuthenticatedClient,
     body: TableQueryRequest,
 ) -> ErrorResponse | TableQueryResponse | None:
-    """Query Delta tables with pagination
+    """[DEPRECATED] Query Delta tables with pagination
 
      Executes a SQL query against Delta tables with pagination support. Returns query results along with
     pagination metadata including total count. Use limit and offset parameters to paginate through large
     result sets. IMPORTANT: Include an ORDER BY clause in your query for deterministic pagination
     results. Without ORDER BY, rows may appear in different order across pages, causing duplicates or
     missing records.
+
+    DEPRECATED: This endpoint is deprecated. Use endpoint /delta/tables/query/async/submit for
+    asynchronous query execution.
 
     Args:
         body (TableQueryRequest): Request model for querying a Delta table.
