@@ -2,6 +2,9 @@
 
 from .aggregation_spec import AggregationSpec
 from .aggregation_spec_function import AggregationSpecFunction
+from .async_query_status_response import AsyncQueryStatusResponse
+from .async_query_submit_request import AsyncQuerySubmitRequest
+from .async_query_submit_response import AsyncQuerySubmitResponse
 from .column_spec import ColumnSpec
 from .component_health import ComponentHealth
 from .component_health_status import ComponentHealthStatus
@@ -15,6 +18,7 @@ from .deep_health_response_status import DeepHealthResponseStatus
 from .error_response import ErrorResponse
 from .filter_condition import FilterCondition
 from .filter_condition_operator import FilterConditionOperator
+from .job_status import JobStatus
 from .join_clause import JoinClause
 from .join_clause_join_type import JoinClauseJoinType
 from .order_by_spec import OrderBySpec
@@ -37,6 +41,9 @@ from .table_select_response_data_item import TableSelectResponseDataItem
 __all__ = (
     "AggregationSpec",
     "AggregationSpecFunction",
+    "AsyncQueryStatusResponse",
+    "AsyncQuerySubmitRequest",
+    "AsyncQuerySubmitResponse",
     "ColumnSpec",
     "ComponentHealth",
     "ComponentHealthStatus",
@@ -50,6 +57,7 @@ __all__ = (
     "ErrorResponse",
     "FilterCondition",
     "FilterConditionOperator",
+    "JobStatus",
     "JoinClause",
     "JoinClauseJoinType",
     "OrderBySpec",

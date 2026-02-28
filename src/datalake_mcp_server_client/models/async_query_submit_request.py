@@ -8,26 +8,22 @@ from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-T = TypeVar("T", bound="TableQueryRequest")
+T = TypeVar("T", bound="AsyncQuerySubmitRequest")
 
 
 @_attrs_define
-class TableQueryRequest:
-    """Request model for querying a Delta table.
+class AsyncQuerySubmitRequest:
+    """Request model for submitting an async query.
 
-    Note: For deterministic pagination with offset > 0, include an ORDER BY
-    clause in your query. Without ORDER BY, rows may appear in different
-    order across pages, causing duplicates or missing records.
-
-        Attributes:
-            query (str): SQL query to execute against the table
-            limit (int | Unset): Maximum number of rows to return Default: 100.
-            offset (int | Unset): Number of rows to skip for pagination. Requires ORDER BY in query for deterministic
-                results. Default: 0.
+    Attributes:
+        query (str): SQL query to execute against Delta tables
+        limit (int | Unset): Maximum number of rows to return Default: 1000.
+        offset (int | Unset): Number of rows to skip for pagination. Requires ORDER BY in query for deterministic
+            results. Default: 0.
     """
 
     query: str
-    limit: int | Unset = 100
+    limit: int | Unset = 1000
     offset: int | Unset = 0
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -61,14 +57,14 @@ class TableQueryRequest:
 
         offset = d.pop("offset", UNSET)
 
-        table_query_request = cls(
+        async_query_submit_request = cls(
             query=query,
             limit=limit,
             offset=offset,
         )
 
-        table_query_request.additional_properties = d
-        return table_query_request
+        async_query_submit_request.additional_properties = d
+        return async_query_submit_request
 
     @property
     def additional_keys(self) -> list[str]:

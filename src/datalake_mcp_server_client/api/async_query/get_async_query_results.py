@@ -1,20 +1,25 @@
 from http import HTTPStatus
 from typing import Any
+from urllib.parse import quote
 
 import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.deep_health_response import DeepHealthResponse
 from ...models.error_response import ErrorResponse
+from ...models.table_query_response import TableQueryResponse
 from ...types import Response
 
 
-def _get_kwargs() -> dict[str, Any]:
+def _get_kwargs(
+    job_id: str,
+) -> dict[str, Any]:
 
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": "/health",
+        "url": "/delta/tables/query/async/{job_id}/results".format(
+            job_id=quote(str(job_id), safe=""),
+        ),
     }
 
     return _kwargs
@@ -22,9 +27,9 @@ def _get_kwargs() -> dict[str, Any]:
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> DeepHealthResponse | ErrorResponse | None:
+) -> ErrorResponse | TableQueryResponse | None:
     if response.status_code == 200:
-        response_200 = DeepHealthResponse.from_dict(response.json())
+        response_200 = TableQueryResponse.from_dict(response.json())
 
         return response_200
 
@@ -46,7 +51,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[DeepHealthResponse | ErrorResponse]:
+) -> Response[ErrorResponse | TableQueryResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -56,23 +61,29 @@ def _build_response(
 
 
 def sync_detailed(
+    job_id: str,
     *,
-    client: AuthenticatedClient | Client,
-) -> Response[DeepHealthResponse | ErrorResponse]:
-    """Health check
+    client: AuthenticatedClient,
+) -> Response[ErrorResponse | TableQueryResponse]:
+    """Get async query results
 
-     Returns detailed health status of all backend services including Redis, PostgreSQL (if configured),
-    and Hive Metastore Thrift connection.
+     Retrieves the results of a completed async query. Returns the same format as the sync
+    /delta/tables/query endpoint. Only available after the job has succeeded.
+
+    Args:
+        job_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[DeepHealthResponse | ErrorResponse]
+        Response[ErrorResponse | TableQueryResponse]
     """
 
-    kwargs = _get_kwargs()
+    kwargs = _get_kwargs(
+        job_id=job_id,
+    )
 
     response = client.get_httpx_client().request(
         **kwargs,
@@ -82,45 +93,56 @@ def sync_detailed(
 
 
 def sync(
+    job_id: str,
     *,
-    client: AuthenticatedClient | Client,
-) -> DeepHealthResponse | ErrorResponse | None:
-    """Health check
+    client: AuthenticatedClient,
+) -> ErrorResponse | TableQueryResponse | None:
+    """Get async query results
 
-     Returns detailed health status of all backend services including Redis, PostgreSQL (if configured),
-    and Hive Metastore Thrift connection.
+     Retrieves the results of a completed async query. Returns the same format as the sync
+    /delta/tables/query endpoint. Only available after the job has succeeded.
+
+    Args:
+        job_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        DeepHealthResponse | ErrorResponse
+        ErrorResponse | TableQueryResponse
     """
 
     return sync_detailed(
+        job_id=job_id,
         client=client,
     ).parsed
 
 
 async def asyncio_detailed(
+    job_id: str,
     *,
-    client: AuthenticatedClient | Client,
-) -> Response[DeepHealthResponse | ErrorResponse]:
-    """Health check
+    client: AuthenticatedClient,
+) -> Response[ErrorResponse | TableQueryResponse]:
+    """Get async query results
 
-     Returns detailed health status of all backend services including Redis, PostgreSQL (if configured),
-    and Hive Metastore Thrift connection.
+     Retrieves the results of a completed async query. Returns the same format as the sync
+    /delta/tables/query endpoint. Only available after the job has succeeded.
+
+    Args:
+        job_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[DeepHealthResponse | ErrorResponse]
+        Response[ErrorResponse | TableQueryResponse]
     """
 
-    kwargs = _get_kwargs()
+    kwargs = _get_kwargs(
+        job_id=job_id,
+    )
 
     response = await client.get_async_httpx_client().request(**kwargs)
 
@@ -128,24 +150,29 @@ async def asyncio_detailed(
 
 
 async def asyncio(
+    job_id: str,
     *,
-    client: AuthenticatedClient | Client,
-) -> DeepHealthResponse | ErrorResponse | None:
-    """Health check
+    client: AuthenticatedClient,
+) -> ErrorResponse | TableQueryResponse | None:
+    """Get async query results
 
-     Returns detailed health status of all backend services including Redis, PostgreSQL (if configured),
-    and Hive Metastore Thrift connection.
+     Retrieves the results of a completed async query. Returns the same format as the sync
+    /delta/tables/query endpoint. Only available after the job has succeeded.
+
+    Args:
+        job_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        DeepHealthResponse | ErrorResponse
+        ErrorResponse | TableQueryResponse
     """
 
     return (
         await asyncio_detailed(
+            job_id=job_id,
             client=client,
         )
     ).parsed
