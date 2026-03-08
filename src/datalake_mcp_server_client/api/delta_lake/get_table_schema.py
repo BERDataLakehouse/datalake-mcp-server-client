@@ -72,10 +72,10 @@ def sync_detailed(
 ) -> Response[ErrorResponse | TableSchemaResponse]:
     """Get table schema
 
-     Gets the schema (column names) of a specific table in a database.
+     Gets the schema (column names) of a specific table in an Iceberg namespace.
 
     Args:
-        body (TableSchemaRequest): Request model for getting table schema.
+        body (TableSchemaRequest): Request model for getting table schema from an Iceberg catalog.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -103,10 +103,10 @@ def sync(
 ) -> ErrorResponse | TableSchemaResponse | None:
     """Get table schema
 
-     Gets the schema (column names) of a specific table in a database.
+     Gets the schema (column names) of a specific table in an Iceberg namespace.
 
     Args:
-        body (TableSchemaRequest): Request model for getting table schema.
+        body (TableSchemaRequest): Request model for getting table schema from an Iceberg catalog.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -129,10 +129,10 @@ async def asyncio_detailed(
 ) -> Response[ErrorResponse | TableSchemaResponse]:
     """Get table schema
 
-     Gets the schema (column names) of a specific table in a database.
+     Gets the schema (column names) of a specific table in an Iceberg namespace.
 
     Args:
-        body (TableSchemaRequest): Request model for getting table schema.
+        body (TableSchemaRequest): Request model for getting table schema from an Iceberg catalog.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -158,10 +158,10 @@ async def asyncio(
 ) -> ErrorResponse | TableSchemaResponse | None:
     """Get table schema
 
-     Gets the schema (column names) of a specific table in a database.
+     Gets the schema (column names) of a specific table in an Iceberg namespace.
 
     Args:
-        body (TableSchemaRequest): Request model for getting table schema.
+        body (TableSchemaRequest): Request model for getting table schema from an Iceberg catalog.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
