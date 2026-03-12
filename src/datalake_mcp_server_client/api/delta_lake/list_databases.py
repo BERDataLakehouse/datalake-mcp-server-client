@@ -70,13 +70,13 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: DatabaseListRequest,
 ) -> Response[DatabaseListResponse | ErrorResponse]:
-    """List all Iceberg namespaces
+    """List all databases in the Hive metastore
 
-     Lists all accessible Iceberg namespaces across all catalogs. Returns namespaces in catalog.namespace
-    format.
+     Lists all databases available in the Hive metastore, optionally using PostgreSQL for faster
+    retrieval and filtered by user namespace.
 
     Args:
-        body (DatabaseListRequest): Request model for listing databases from Iceberg catalogs.
+        body (DatabaseListRequest): Request model for listing databases.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -102,13 +102,13 @@ def sync(
     client: AuthenticatedClient,
     body: DatabaseListRequest,
 ) -> DatabaseListResponse | ErrorResponse | None:
-    """List all Iceberg namespaces
+    """List all databases in the Hive metastore
 
-     Lists all accessible Iceberg namespaces across all catalogs. Returns namespaces in catalog.namespace
-    format.
+     Lists all databases available in the Hive metastore, optionally using PostgreSQL for faster
+    retrieval and filtered by user namespace.
 
     Args:
-        body (DatabaseListRequest): Request model for listing databases from Iceberg catalogs.
+        body (DatabaseListRequest): Request model for listing databases.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -129,13 +129,13 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: DatabaseListRequest,
 ) -> Response[DatabaseListResponse | ErrorResponse]:
-    """List all Iceberg namespaces
+    """List all databases in the Hive metastore
 
-     Lists all accessible Iceberg namespaces across all catalogs. Returns namespaces in catalog.namespace
-    format.
+     Lists all databases available in the Hive metastore, optionally using PostgreSQL for faster
+    retrieval and filtered by user namespace.
 
     Args:
-        body (DatabaseListRequest): Request model for listing databases from Iceberg catalogs.
+        body (DatabaseListRequest): Request model for listing databases.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -159,13 +159,13 @@ async def asyncio(
     client: AuthenticatedClient,
     body: DatabaseListRequest,
 ) -> DatabaseListResponse | ErrorResponse | None:
-    """List all Iceberg namespaces
+    """List all databases in the Hive metastore
 
-     Lists all accessible Iceberg namespaces across all catalogs. Returns namespaces in catalog.namespace
-    format.
+     Lists all databases available in the Hive metastore, optionally using PostgreSQL for faster
+    retrieval and filtered by user namespace.
 
     Args:
-        body (DatabaseListRequest): Request model for listing databases from Iceberg catalogs.
+        body (DatabaseListRequest): Request model for listing databases.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

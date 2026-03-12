@@ -70,12 +70,12 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: DatabaseStructureRequest,
 ) -> Response[DatabaseStructureResponse | ErrorResponse]:
-    """Get Iceberg database structure
+    """Get database structure
 
-     Gets the complete structure of all Iceberg namespaces, optionally including table schemas.
+     Gets the complete structure of all databases, optionally including table schemas.
 
     Args:
-        body (DatabaseStructureRequest): Request model for getting Iceberg database structure.
+        body (DatabaseStructureRequest): Request model for getting database structure.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -101,12 +101,12 @@ def sync(
     client: AuthenticatedClient,
     body: DatabaseStructureRequest,
 ) -> DatabaseStructureResponse | ErrorResponse | None:
-    """Get Iceberg database structure
+    """Get database structure
 
-     Gets the complete structure of all Iceberg namespaces, optionally including table schemas.
+     Gets the complete structure of all databases, optionally including table schemas.
 
     Args:
-        body (DatabaseStructureRequest): Request model for getting Iceberg database structure.
+        body (DatabaseStructureRequest): Request model for getting database structure.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -127,12 +127,12 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: DatabaseStructureRequest,
 ) -> Response[DatabaseStructureResponse | ErrorResponse]:
-    """Get Iceberg database structure
+    """Get database structure
 
-     Gets the complete structure of all Iceberg namespaces, optionally including table schemas.
+     Gets the complete structure of all databases, optionally including table schemas.
 
     Args:
-        body (DatabaseStructureRequest): Request model for getting Iceberg database structure.
+        body (DatabaseStructureRequest): Request model for getting database structure.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -156,12 +156,12 @@ async def asyncio(
     client: AuthenticatedClient,
     body: DatabaseStructureRequest,
 ) -> DatabaseStructureResponse | ErrorResponse | None:
-    """Get Iceberg database structure
+    """Get database structure
 
-     Gets the complete structure of all Iceberg namespaces, optionally including table schemas.
+     Gets the complete structure of all databases, optionally including table schemas.
 
     Args:
-        body (DatabaseStructureRequest): Request model for getting Iceberg database structure.
+        body (DatabaseStructureRequest): Request model for getting database structure.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
