@@ -70,12 +70,12 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: TableListRequest,
 ) -> Response[ErrorResponse | TableListResponse]:
-    """List tables in a database
+    """List tables in an Iceberg namespace
 
-     Lists all tables in a specific database, optionally using PostgreSQL for faster retrieval.
+     Lists all tables in a specific Iceberg namespace (catalog.namespace format).
 
     Args:
-        body (TableListRequest): Request model for listing tables in a database.
+        body (TableListRequest): Request model for listing tables in an Iceberg namespace.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -101,12 +101,12 @@ def sync(
     client: AuthenticatedClient,
     body: TableListRequest,
 ) -> ErrorResponse | TableListResponse | None:
-    """List tables in a database
+    """List tables in an Iceberg namespace
 
-     Lists all tables in a specific database, optionally using PostgreSQL for faster retrieval.
+     Lists all tables in a specific Iceberg namespace (catalog.namespace format).
 
     Args:
-        body (TableListRequest): Request model for listing tables in a database.
+        body (TableListRequest): Request model for listing tables in an Iceberg namespace.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -127,12 +127,12 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: TableListRequest,
 ) -> Response[ErrorResponse | TableListResponse]:
-    """List tables in a database
+    """List tables in an Iceberg namespace
 
-     Lists all tables in a specific database, optionally using PostgreSQL for faster retrieval.
+     Lists all tables in a specific Iceberg namespace (catalog.namespace format).
 
     Args:
-        body (TableListRequest): Request model for listing tables in a database.
+        body (TableListRequest): Request model for listing tables in an Iceberg namespace.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -156,12 +156,12 @@ async def asyncio(
     client: AuthenticatedClient,
     body: TableListRequest,
 ) -> ErrorResponse | TableListResponse | None:
-    """List tables in a database
+    """List tables in an Iceberg namespace
 
-     Lists all tables in a specific database, optionally using PostgreSQL for faster retrieval.
+     Lists all tables in a specific Iceberg namespace (catalog.namespace format).
 
     Args:
-        body (TableListRequest): Request model for listing tables in a database.
+        body (TableListRequest): Request model for listing tables in an Iceberg namespace.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
