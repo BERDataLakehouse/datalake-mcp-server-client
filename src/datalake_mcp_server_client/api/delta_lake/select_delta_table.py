@@ -70,11 +70,14 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: TableSelectRequest,
 ) -> Response[ErrorResponse | TableSelectResponse]:
-    """Execute a structured SELECT query
+    """[DEPRECATED] Execute a structured SELECT query
 
      Builds and executes a SELECT query from structured parameters. Supports column selection,
     aggregations (COUNT, SUM, AVG, MIN, MAX), JOINs, WHERE filters, GROUP BY, HAVING, ORDER BY,
     DISTINCT, and pagination. The backend builds the query safely, preventing SQL injection.
+
+    DEPRECATED: This endpoint is deprecated. Use endpoint /delta/tables/query/async/submit for
+    asynchronous query execution.
 
     Args:
         body (TableSelectRequest): Request model for structured SELECT query builder.
@@ -103,11 +106,14 @@ def sync(
     client: AuthenticatedClient,
     body: TableSelectRequest,
 ) -> ErrorResponse | TableSelectResponse | None:
-    """Execute a structured SELECT query
+    """[DEPRECATED] Execute a structured SELECT query
 
      Builds and executes a SELECT query from structured parameters. Supports column selection,
     aggregations (COUNT, SUM, AVG, MIN, MAX), JOINs, WHERE filters, GROUP BY, HAVING, ORDER BY,
     DISTINCT, and pagination. The backend builds the query safely, preventing SQL injection.
+
+    DEPRECATED: This endpoint is deprecated. Use endpoint /delta/tables/query/async/submit for
+    asynchronous query execution.
 
     Args:
         body (TableSelectRequest): Request model for structured SELECT query builder.
@@ -131,11 +137,14 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: TableSelectRequest,
 ) -> Response[ErrorResponse | TableSelectResponse]:
-    """Execute a structured SELECT query
+    """[DEPRECATED] Execute a structured SELECT query
 
      Builds and executes a SELECT query from structured parameters. Supports column selection,
     aggregations (COUNT, SUM, AVG, MIN, MAX), JOINs, WHERE filters, GROUP BY, HAVING, ORDER BY,
     DISTINCT, and pagination. The backend builds the query safely, preventing SQL injection.
+
+    DEPRECATED: This endpoint is deprecated. Use endpoint /delta/tables/query/async/submit for
+    asynchronous query execution.
 
     Args:
         body (TableSelectRequest): Request model for structured SELECT query builder.
@@ -162,11 +171,14 @@ async def asyncio(
     client: AuthenticatedClient,
     body: TableSelectRequest,
 ) -> ErrorResponse | TableSelectResponse | None:
-    """Execute a structured SELECT query
+    """[DEPRECATED] Execute a structured SELECT query
 
      Builds and executes a SELECT query from structured parameters. Supports column selection,
     aggregations (COUNT, SUM, AVG, MIN, MAX), JOINs, WHERE filters, GROUP BY, HAVING, ORDER BY,
     DISTINCT, and pagination. The backend builds the query safely, preventing SQL injection.
+
+    DEPRECATED: This endpoint is deprecated. Use endpoint /delta/tables/query/async/submit for
+    asynchronous query execution.
 
     Args:
         body (TableSelectRequest): Request model for structured SELECT query builder.
