@@ -24,6 +24,7 @@ from .join_clause_join_type import JoinClauseJoinType
 from .order_by_spec import OrderBySpec
 from .order_by_spec_direction import OrderBySpecDirection
 from .pagination_info import PaginationInfo
+from .query_engine import QueryEngine
 from .table_count_request import TableCountRequest
 from .table_count_response import TableCountResponse
 from .table_list_request import TableListRequest
@@ -63,6 +64,7 @@ __all__ = (
     "OrderBySpec",
     "OrderBySpecDirection",
     "PaginationInfo",
+    "QueryEngine",
     "TableCountRequest",
     "TableCountResponse",
     "TableListRequest",

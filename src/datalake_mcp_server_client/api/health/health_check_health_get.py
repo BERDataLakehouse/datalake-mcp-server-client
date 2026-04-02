@@ -61,8 +61,8 @@ def sync_detailed(
 ) -> Response[DeepHealthResponse | ErrorResponse]:
     """Health check
 
-     Returns detailed health status of all backend services including Redis, PostgreSQL (if configured),
-    and Hive Metastore Thrift connection.
+     Returns detailed health status of all backend services including Redis and Hive Metastore Thrift
+    connection.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -87,8 +87,8 @@ def sync(
 ) -> DeepHealthResponse | ErrorResponse | None:
     """Health check
 
-     Returns detailed health status of all backend services including Redis, PostgreSQL (if configured),
-    and Hive Metastore Thrift connection.
+     Returns detailed health status of all backend services including Redis and Hive Metastore Thrift
+    connection.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -109,8 +109,8 @@ async def asyncio_detailed(
 ) -> Response[DeepHealthResponse | ErrorResponse]:
     """Health check
 
-     Returns detailed health status of all backend services including Redis, PostgreSQL (if configured),
-    and Hive Metastore Thrift connection.
+     Returns detailed health status of all backend services including Redis and Hive Metastore Thrift
+    connection.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -133,8 +133,8 @@ async def asyncio(
 ) -> DeepHealthResponse | ErrorResponse | None:
     """Health check
 
-     Returns detailed health status of all backend services including Redis, PostgreSQL (if configured),
-    and Hive Metastore Thrift connection.
+     Returns detailed health status of all backend services including Redis and Hive Metastore Thrift
+    connection.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
