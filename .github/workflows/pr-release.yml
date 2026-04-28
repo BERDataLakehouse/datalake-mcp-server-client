@@ -2,7 +2,7 @@ name: PR Release Management
 
 on:
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "main", "develop" ]
     types: [opened, synchronize, reopened, closed]
 
 jobs:
@@ -19,6 +19,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Checkout Datalake MCP Server
+        uses: actions/checkout@v4
+        with:
+          repository: BERDataLakehouse/datalake-mcp-server
+          ref: ${{ github.head_ref || github.ref_name }}
+          path: datalake-mcp-server
+
       - name: Install uv
         uses: astral-sh/setup-uv@v3
         with:
@@ -28,6 +35,8 @@ jobs:
         run: uv python install 3.13
 
       - name: Generate client
+        env:
+          DATALAKE_MCP_SERVER_REPO: datalake-mcp-server
         run: ./run.sh
 
       - name: Set version variables

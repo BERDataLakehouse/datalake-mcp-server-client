@@ -11,10 +11,10 @@ T = TypeVar("T", bound="TableSchemaRequest")
 
 @_attrs_define
 class TableSchemaRequest:
-    """Request model for getting table schema.
+    """Request model for getting table schema from an Iceberg catalog.
 
     Attributes:
-        database (str): Name of the database containing the table
+        database (str): Namespace in catalog.namespace format (e.g., my.demo)
         table (str): Name of the table to get schema for
     """
 
