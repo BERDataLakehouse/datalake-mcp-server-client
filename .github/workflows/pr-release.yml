@@ -2,7 +2,7 @@ name: PR Release Management
 
 on:
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "main", "develop" ]
     types: [opened, synchronize, reopened, closed]
 
 jobs:
