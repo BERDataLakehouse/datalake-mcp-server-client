@@ -6,28 +6,22 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
 T = TypeVar("T", bound="TableListRequest")
 
 
 @_attrs_define
 class TableListRequest:
-    """Request model for listing tables in a database.
+    """Request model for listing tables in an Iceberg namespace.
 
     Attributes:
-        database (str): Name of the database to list tables from
-        use_hms (bool | Unset): Whether to use Hive Metastore client for faster metadata retrieval Default: True.
+        database (str): Namespace in catalog.namespace format (e.g., my.demo)
     """
 
     database: str
-    use_hms: bool | Unset = True
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         database = self.database
-
-        use_hms = self.use_hms
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -36,8 +30,6 @@ class TableListRequest:
                 "database": database,
             }
         )
-        if use_hms is not UNSET:
-            field_dict["use_hms"] = use_hms
 
         return field_dict
 
@@ -46,11 +38,8 @@ class TableListRequest:
         d = dict(src_dict)
         database = d.pop("database")
 
-        use_hms = d.pop("use_hms", UNSET)
-
         table_list_request = cls(
             database=database,
-            use_hms=use_hms,
         )
 
         table_list_request.additional_properties = d

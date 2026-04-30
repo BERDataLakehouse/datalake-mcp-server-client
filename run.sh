@@ -3,8 +3,9 @@
 set -e
 
 # --- Configuration ---
-# Use local repository path instead of cloning from GitHub
-LOCAL_REPO="../datalake-mcp-server"
+# Use local repository path instead of cloning from GitHub. Polaris testing can
+# generate the client from a checked-out sibling repo instead of a published branch.
+LOCAL_REPO="${DATALAKE_MCP_SERVER_REPO:-../datalake-mcp-server}"
 TARGET_DIR="$LOCAL_REPO"
 VENV_DIR="temp_venv"
 PYTHON_SPEC_GENERATOR="generate_spec_from_local.py"
