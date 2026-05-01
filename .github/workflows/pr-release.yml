@@ -19,13 +19,33 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Resolve datalake-mcp-server ref
+        id: server_ref
+        run: |
+          HEAD_REF="${{ github.head_ref || github.ref_name }}"
+          BASE_REF="${{ github.base_ref || 'main' }}"
+          MERGED="${{ github.event.pull_request.merged }}"
+          ACTION="${{ github.event.action }}"
+          # On merged-close the head branch is often auto-deleted; always use base.
+          # Otherwise prefer head_ref if it exists in the server repo (Polaris-
+          # style cross-repo PRs), else fall back to base_ref.
+          if [ "$ACTION" = "closed" ] && [ "$MERGED" = "true" ]; then
+            REF="$BASE_REF"
+          elif git ls-remote --exit-code --heads \
+              https://github.com/BERDataLakehouse/datalake-mcp-server.git \
+              "$HEAD_REF" >/dev/null 2>&1; then
+            REF="$HEAD_REF"
+          else
+            REF="$BASE_REF"
+          fi
+          echo "Resolved datalake-mcp-server ref to: $REF"
+          echo "ref=$REF" >> "$GITHUB_OUTPUT"
+
       - name: Checkout Datalake MCP Server
         uses: actions/checkout@v4
         with:
           repository: BERDataLakehouse/datalake-mcp-server
-          # On merged PRs the source branch may be auto-deleted, so fall back to
-          # the PR's base branch (main/develop) which always exists.
-          ref: ${{ (github.event.action == 'closed' && github.event.pull_request.merged == true) && github.base_ref || github.head_ref || github.ref_name }}
+          ref: ${{ steps.server_ref.outputs.ref }}
           path: datalake-mcp-server
 
       - name: Install uv
